@@ -1,0 +1,60 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package lab2;
+
+/**
+ *
+ * @author User
+ */
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+import java.util.LinkedHashSet;
+public class Lab2 {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        // TODO code application logic here
+        LinkedHashSet<Integer> email = new LinkedHashSet<Integer>();
+         LinkedHashSet<Integer>  web = new LinkedHashSet<Integer>();
+         File f =new File("C:\\Users\\User\\Documents\\NetBeansProjects\\ Lab2\\src\\lab2\\input.txt");
+         try{
+             Scanner sc=new Scanner(f);
+             while(sc.hasNextLine()){
+                 int total=sc.nextInt();
+                 sc.nextLine();
+                 for(int i=0;i<total; i++){
+                     String needCheck=sc.nextLine();
+                     //System.out.println(needCheck);
+                     String temp=needCheck.substring(0,4);
+                     if(temp.equals("www.")){
+                         web.add(i+1);
+                     }
+                     else{
+                         email.add(i+1);
+                     }
+                 }
+             }
+         }
+         catch(FileNotFoundException e)  {
+               System.out.println("can not find the file");
+
+           }
+         String emailStore="";
+         String webStore="";
+         for(int a:email){
+             emailStore+=a+" ,";
+         }
+         for(int b:web){
+             webStore+=b+" ,";
+         }
+         System.out.println("Email Line Numbers: " + emailStore);
+         System.out.println("Web Line Numbers: " + webStore);
+    }
+    
+}
