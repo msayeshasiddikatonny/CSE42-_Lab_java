@@ -1,0 +1,69 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package lab3;
+import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.io.File;
+import java.io.FileNotFoundException;
+/**
+ *
+ * @author User
+ */
+public class Lab3 {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+       File f=new File("C:\\Users\\User\\Documents\\NetBeansProjects\\ Lab3\\src\\lab3\\input.txt");
+       String []regEx;String []testEx;
+       try{
+           Scanner sc =new Scanner(f);
+           while (sc.hasNextLine()){
+               int toReg=sc.nextInt();
+               sc.nextLine();
+                regEx=new String[toReg];
+               for(int i=0;i<toReg;i++){
+                   regEx[i]=sc.next();
+               }
+               int testReg=sc.nextInt();
+               sc.nextLine();
+               testEx=new String[testReg];
+               for(int i=0;i<testReg;i++){
+                   testEx[i]=sc.next();
+               }
+               Matcher m;Pattern p;
+           for(int i=0;i<testEx.length;i++){
+               Boolean flag=false;int lineNum=0;
+               for(int k=0;k<regEx.length;k++){
+                   p=Pattern.compile(regEx[k]);
+                   m=p.matcher(testEx[i]);
+                           if(m.find()){
+                               flag=true;lineNum=k+1;
+                               break;
+                               
+                           }
+               }
+               if(flag){
+              System.out.println("YES, " + lineNum);
+                 }
+      else{
+        System.out.println("NO, " + lineNum);
+      }
+           }
+           }
+           
+           
+       }
+       catch(FileNotFoundException e)  {
+               System.out.println("can not find the file");
+
+           }
+        // TODO code application logic here
+    }
+    
+}
